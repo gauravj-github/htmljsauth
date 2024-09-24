@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body class="bg-gray-800">
+    <nav class="flex justify-between bg-black p-3">
+        <a href="" class="text-xl text-white">Logo</a>
+        <div class="hidden md:flex gap-7">
+            <a href="#" class="text-xl text-white hover:text-blue-400">HOME</a>
+            <a href="#" class="text-xl text-white hover:text-blue-400">ABOUT</a>
+            <a href="#" class="text-xl text-white hover:text-blue-400">SERVICES</a>
+            <a href="#" class="text-xl text-white hover:text-blue-400">CONTACT US</a>
+        </div>
+    </nav>
+
+    <form action="" class="flex justify-center mt-5" onsubmit="return validateForm()">
+        <div class="bg-gray-700 p-10 rounded-lg shadow-lg w-full max-w-lg">
+            <h1 class="text-4xl text-center mb-6 text-white">REGISTRATION FORM</h1>
+
+            <div class="relative mt-3">
+                <i class="fas fa-user absolute text-gray-400 left-3 top-1/2 transform -translate-y-1/2"></i>
+                <input type="text" placeholder="First Name" id="first-name"
+                    class="bg-black text-white text-center rounded-2xl p-2 pl-10 text-xl bg-gray-800 w-full">
+                <small id="first-name-error" class="text-red-500 hidden text-center block">Please enter a valid first name (at least 3 characters).</small>
+            </div>
+
+            <div class="relative mt-3">
+                <i class="fas fa-user-tag absolute text-gray-400 left-3 top-1/2 transform -translate-y-1/2"></i>
+                <input type="text" placeholder="Last Name" id="last-name" 
+                    class="bg-black text-white text-center rounded-2xl p-2 pl-10 text-xl bg-gray-800 w-full">
+                <small id="last-name-error" class="text-red-500 hidden text-center block">Please enter your last name.</small>
+            </div>
+
+            <div class="relative mt-3">
+                <i class="fas fa-phone absolute text-gray-400 left-3 top-1/2 transform -translate-y-1/2"></i>
+                <input type="tel" placeholder="Contact Number" id="contact-number" maxlength="10"
+                    class="bg-black text-white text-center rounded-2xl p-2 pl-10 text-xl bg-gray-800 w-full">
+                <small id="contact-error" class="text-red-500 hidden text-center block">Enter a valid 10-digit contact number.</small>
+            </div>
+
+            <div class="relative mt-3">
+                <i class="fas fa-lock absolute text-gray-400 left-3 top-1/2 transform -translate-y-1/2"></i>
+                <input type="password" placeholder="Password" id="password" minlength="6"
+                    class="bg-black text-white text-center rounded-2xl p-2 pl-10 text-xl bg-gray-800 w-full">
+                <small id="password-error" class="text-red-500 hidden text-center block">Password must be at least 6 characters long.</small>
+            </div>
+
+            <div class="relative mt-3">
+                <i class="fas fa-calendar-alt absolute text-gray-400 left-3 top-1/2 transform -translate-y-1/2"></i>
+                <input type="date" id="date" 
+                    class="bg-black text-white text-center rounded-2xl p-2 pl-10 text-xl bg-gray-800 w-full">
+                <small id="date-error" class="text-red-500 hidden text-center block">Please select a valid date.</small>
+            </div>
+
+            <button class="bg-blue-600 text-white py-2 rounded-xl mt-5 w-full text-xl hover:bg-blue-700" type="submit">
+                Submit
+            </button>
+
+            <a href="/ht/sign-in.html" class="text-center text-2xl mt-3 block text-white hover:text-blue-400">Login</a>
+        </div>
+    </form>
+
+    <script>
+        function validateForm() {
+            let isValid = true;
+
+            const firstName = document.getElementById('first-name').value.trim();
+            const lastName = document.getElementById('last-name').value.trim();
+            const contactNumber = document.getElementById('contact-number').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const date = document.getElementById('date').value.trim();
+
+            // First Name validation
+            if (firstName.length < 3) {
+                document.getElementById('first-name-error').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('first-name-error').style.display = 'none';
+            }
+
+            // Last Name validation
+            if (lastName === '') {
+                document.getElementById('last-name-error').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('last-name-error').style.display = 'none';
+            }
+
+            // Contact Number validation
+            if (contactNumber.length !== 10 || isNaN(contactNumber)) {
+                document.getElementById('contact-error').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('contact-error').style.display = 'none';
+            }
+
+            // Password validation
+            if (password.length < 6) {
+                document.getElementById('password-error').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('password-error').style.display = 'none';
+            }
+
+            // Date validation
+            if (date === '') {
+                document.getElementById('date-error').style.display = 'block';
+                isValid = false;
+            } else {
+                document.getElementById('date-error').style.display = 'none';
+            }
+
+            // Prevent form submission if validation fails
+            return isValid;
+        }
+    </script>
+</body>
+
+</html>
